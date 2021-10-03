@@ -1,0 +1,71 @@
+{
+  "name": "nfe-uploader",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack && cp public/react-datepicker.css dist/ && cp tray-icon.png dist/",
+    "react:dev": "webpack serve --mode=development --config ./webpack.react.js",
+    "electron:dev": "nodemon",
+    "dev": "concurrently --kill-others \"npm run react:dev\" \"npm run electron:dev\"",
+    "start": "npm run build && electron dist/main.js",
+    "deploy": "rm dist -fr && npm run build && electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reallagos-contabilidade/nfe-uploader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reallagos-contabilidade/nfe-uploader/issues"
+  },
+  "homepage": "https://github.com/reallagos-contabilidade/nfe-uploader#readme",
+  "dependencies": {
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "accurate-interval": "^1.0.9",
+    "aws-sdk": "^2.978.0",
+    "axios": "^0.21.4",
+    "chokidar": "^3.5.2",
+    "electron-is-dev": "^2.0.0",
+    "electron-storage": "^1.0.7",
+    "is-online": "^9.0.1",
+    "react": "^17.0.2",
+    "react-datepicker": "^4.2.1",
+    "react-dom": "^17.0.2",
+    "update-electron-app": "^2.0.1",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "css-loader": "^6.2.0",
+    "electron": "^13.2.3",
+    "electron-builder": "^22.11.7",
+    "electron-packager": "^15.3.0",
+    "html-webpack-plugin": "^5.3.2",
+    "nodemon": "^2.0.12",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "build": {
+    "extends": null,
+    "win": {
+      "icon": "./icon.png"
+    },
+    "files": [
+      "./dist/main.js",
+      "./dist/preload.js",
+      "./dist/renderer.js",
+      "./dist/index.html",
+      "./dist/react-datepicker.css",
+      "./dist/tray-icon.png"
+    ],
+    "extraMetadata": {
+      "main": "dist/main.js"
+    }
+  }
+}
